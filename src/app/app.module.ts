@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { InfoModule } from './info/info.module';
 import { ContactModule } from './contact/contact.module';
-import appRoutes from './app.routes';
+// import appRoutes from './app.routes';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -11,7 +11,7 @@ import appRoutes from './app.routes';
     imports: [
         InfoModule,
         ContactModule,
-        appRoutes
+        // appRoutes
     ]
 })
 

@@ -9,6 +9,7 @@ app.set('view engine', 'html');
 app.set('views', 'dist');
 
 app.use('/', express.static('dist', { index: false }));
+app.use('/node_modules', express.static('node_modules', { index: false }));
 
 
 app.get('/api/info', (req, res)=>{

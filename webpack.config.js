@@ -26,7 +26,7 @@ module.exports = function(){
                 {from: 'src/assets', to: 'assets'}
             ]),
             new HtmlWebpackPlugin({
-                template: __dirname + '/src/index.html',
+                template: __dirname + '/index.html',
                 output: __dirname + '/dist',
                 inject: 'head'
             }),
