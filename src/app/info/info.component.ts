@@ -16,12 +16,12 @@ export class InfoComponent implements OnInit{
     public ngOnInit(): void {
 
         this.InfoService.getInfoRaw()
-        .map( res => this.infoObj = res)
-        .subscribe(
-            success => {
-                console.log(this.infoObj)
-            }
-        );
+                .map( res => this.infoObj = res)
+                .subscribe(
+                    success => {
+                        console.log(this.infoObj)
+                    }
+                );
 
     }
 }
