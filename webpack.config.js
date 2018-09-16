@@ -2,11 +2,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ScriptExtPlugin = require('script-ext-html-webpack-plugin');
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
+const path = require('path');
+
 
 module.exports = function(){
     return {
         mode: 'development',
-        entry: './src/main.ts',
+        entry: ['./src/main.ts', './src/assets/styles/style.scss'],
         output: {
             path: __dirname + '/dist',
             filename: 'app.js'
@@ -18,13 +20,30 @@ module.exports = function(){
             rules: [
                 { test: /\.ts$/, loader: '@ngtools/webpack'},
                 { test: /\.css$/, loader: 'raw-loader' },
-                { test: /\.html$/, loader: 'raw-loader' }
+                { test: /\.html$/, loader: 'raw-loader' },
+                {
+                    test: /\.scss$/,
+                    use:[
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                name: 'assets/styles/[name].css',
+                            }
+                        },
+                        {
+                            loader: 'extract-loader'
+                        },
+                        {
+                            loader: 'css-loader?-url'
+                        },
+                        {
+                            loader: 'sass-loader'
+                        }
+                    ]
+                }
             ]
         },
         plugins: [
-            new CopyWebpackPlugin([
-                {from: 'src/assets', to: 'assets'}
-            ]),
             new HtmlWebpackPlugin({
                 template: __dirname + '/index.html',
                 output: __dirname + '/dist',

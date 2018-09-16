@@ -25,4 +25,8 @@ export class InfoService {
     formatBaseUrl(data){
         return `http://${data[0].internalipaddress}/api/${token}`;
     }
+
+    toggleLightState(id, value, url){
+        return this.httpClient.put(`${url}/lights/${id}/state`, {"on":value})
+    }
 }

@@ -9,26 +9,39 @@ import { Observable } from 'rxjs';
 })
 
 export class InfoComponent implements OnInit{
-    public infoObj: {}
     public lightsData : {}
-
+    public url: string = "";
     constructor( private InfoService: InfoService){}
 
     public ngOnInit(): void {
         this.InfoService.getBridgeInfo()
             .subscribe(bridgeData => {
-                let url = this.InfoService.formatBaseUrl(bridgeData)
-                this.InfoService.getLightsBasic(url)
-                    .subscribe( lightsData => {
-                        let lightsArray = []
-                        for( let i in lightsData){
-                            console.log(lightsData[i]);
-                            lightsArray.push(lightsData[i]);
-                        }
-                        this.lightsData = lightsArray;
-                    });
-
+                this.url = this.InfoService.formatBaseUrl(bridgeData);
+                this.getLights();
             })
 
+    }
+    public getLights(){
+        this.InfoService.getLightsBasic(this.url)
+            .subscribe( lightsData => {
+                let lightsArray = []
+                for( let i in lightsData){
+                    console.log(lightsData[i], i);
+                    lightsData[i].lightId = i;
+                    lightsArray.push(lightsData[i]);
+                }
+                this.lightsData = lightsArray;
+            });
+    }
+
+    public toggleState(currentState, lightId): void{
+        this.InfoService.toggleLightState(lightId, !currentState, this.url)
+            .subscribe( (data) => {
+                if(data[0].success){
+                    this.getLights();
+                    // this.lightsData[lightId].state.on = !currentState;
+                    console.log('is done');
+                }
+            })
     }
 }

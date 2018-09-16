@@ -1,6 +1,5 @@
-<div>
-    <div *ngFor="let light of lightsData">
+<div class="lights">
+    <div *ngFor="let light of lightsData" [ngClass]="{on: light.state.on}"  (click)="toggleState(light.state.on, light.lightId)" class="lightBox">
         <p class="mdc-typography--body1">{{light.name}}</p>
     </div>
-
 </div>

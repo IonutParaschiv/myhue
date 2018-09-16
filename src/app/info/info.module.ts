@@ -17,4 +17,5 @@ import { InfoService } from '../services/info.service';
     ]
 })
 
-export class InfoModule{}
+export class InfoModule{
+}
