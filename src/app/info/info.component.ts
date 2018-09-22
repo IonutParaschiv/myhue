@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InfoService } from '../services/info.service';
-import { Observable } from 'rxjs';
+import { InfoService } from '@core/services/info.service';
 
 
 @Component({
@@ -22,7 +21,7 @@ export class InfoComponent implements OnInit{
 
     }
     public getLights(){
-        this.InfoService.getLightsBasic(this.url)
+        this.InfoService.getLightsBasicUrl(this.url)
             .subscribe( lightsData => {
                 let lightsArray = []
                 for( let i in lightsData){

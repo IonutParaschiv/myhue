@@ -1,8 +1,6 @@
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map, mergeMap, filter } from 'rxjs/operators';
 
 const token = '5ayAfZTF8P07qPhBDqUopXrT3Wil0It0yL0yyFVH' //this will change every time. we'll need to create persistent login
 
@@ -14,7 +12,7 @@ export class InfoService {
         return this.httpClient.get('/api/info')
     }
 
-    getLightsBasic(url){
+    getLightsBasicUrl(url){
         return this.httpClient.get(`${url}/lights`)
     }
 

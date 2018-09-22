@@ -1,5 +1,10 @@
 {
     "compilerOptions": {
+        "allowJs": true,
+        "baseUrl": "./",
+        "paths": {
+            "@core/*": ["src/app/*"],
+        },
         "experimentalDecorators": true,
         "lib": [ "dom", "esnext" ]
     }
